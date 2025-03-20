@@ -33,7 +33,7 @@ textarea {white-space: pre;word-wrap: break-word;}
 	background-color: #dcdcdc;
 	border: 1px dotted grey;
 	padding: 1px;
-	color: #000000;
+	color:rgb(239, 239, 32);
 	cursor: default;
 } 
 
