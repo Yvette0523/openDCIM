@@ -1,64 +1,56 @@
-<!-- HTML for static distribution bundle build -->
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="zh-CN">
+<head>
     <meta charset="UTF-8">
-    <title>Swagger UI</title>
-    <link rel="stylesheet" type="text/css" href="./swagger-ui.css" >
-    <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
-    <style>
-      html
-      {
-        box-sizing: border-box;
-        overflow: -moz-scrollbars-vertical;
-        overflow-y: scroll;
-      }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>現代感頁面設計</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>歡迎來到 openDCIM</h1>
+        <h2>數據中心基礎設施管理</h2>
+    </header>
 
-      *,
-      *:before,
-      *:after
-      {
-        box-sizing: inherit;
-      }
+    <section>
+        <form>
+            <label for="name">姓名：</label>
+            <input type="text" id="name" name="name" placeholder="請輸入您的姓名">
+            <button type="submit">提交</button>
+        </form>
+    </section>
 
-      body
-      {
-        margin:0;
-        background: #fafafa;
-      }
-    </style>
-  </head>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>設備名稱</th>
+                    <th>數量</th>
+                    <th>狀態</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>服務器</td>
+                    <td>50</td>
+                    <td>運行中</td>
+                </tr>
+                <tr>
+                    <td>網絡設備</td>
+                    <td>30</td>
+                    <td>運行中</td>
+                </tr>
+                <tr>
+                    <td>存儲設備</td>
+                    <td>20</td>
+                    <td>運行中</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-  <body>
-    <div id="swagger-ui"></div>
-
-    <script src="./swagger-ui-bundle.js" charset="UTF-8"> </script>
-    <script src="./swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
-    <script>
-    window.onload = function() {
-      
-      // Begin Swagger UI call region
-      const ui = SwaggerUIBundle({
-        url: "./swagger.yaml",
-        "dom_id": "#swagger-ui",
-        deepLinking: true,
-        presets: [
-          SwaggerUIBundle.presets.apis,
-          SwaggerUIStandalonePreset
-        ],
-        plugins: [
-          SwaggerUIBundle.plugins.DownloadUrl
-        ],
-        layout: "StandaloneLayout",
-      })
-      
-      
-      // End Swagger UI call region
-
-
-      window.ui = ui
-    }
-  </script>
-  </body>
+    <footer>
+        <p>&copy; 2023 openDCIM. 保留所有權利。</p>
+    </footer>
+</body>
 </html>
