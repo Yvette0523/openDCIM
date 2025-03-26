@@ -7,18 +7,41 @@
 /* Reset All Broswers to Nothing */
 @import url('reset.css');
 
-html {
-	font-family: helvetica,arial;
-	font-size: .833em;
-	padding-left: .9em;
-	padding-right: .9em;
+/* ======== 阴影变量 ======== */
+:root {
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.15);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.08);  /* 卡片专用 */
 }
+
+html {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: .875em;
+  background-color: #f8f9fa;
+  color: #495057;
+  line-height: 1.6;
+  padding: 0;
+}
+
+
+#header {
+  padding: 12px 0;
+  background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%) no-repeat left center;
+  box-shadow: var(--shadow-md); /* 替換原有陰影 */
+  transition: box-shadow 0.3s ease; /* 新增過渡效果 */
+}
+
+#header:hover {
+  box-shadow: var(--shadow-hover); /* 懸停時加深陰影 */
+}
+
 select {padding: .05em;}
-fieldset table, table {border: 1px solid grey;}
+fieldset table, table {border: 1px solid #fff;}
 textarea {white-space: pre;word-wrap: break-word;}
 .hide {display: none !important;}
 .show {display: block;}
-.greybg {background-color: lightGrey;}
+.greybg {background-color: #fff;}
 .warning {text-align: center; color: red; text-transform: uppercase;}
 .right {text-align: right;}
 .left {text-align: left;}
@@ -30,10 +53,10 @@ textarea {white-space: pre;word-wrap: break-word;}
 .floatright { float: right; margin-left: 5px; }
 
 [readonly],[disabled] {
-	background-color: #dcdcdc;
-	border: 1px dotted grey;
+	background-color: #fff;
+	border: 1px dotted #fff;
 	padding: 1px;
-	color:rgb(239, 239, 32);
+	color: #000000;
 	cursor: default;
 } 
 
@@ -44,30 +67,25 @@ textarea {white-space: pre;word-wrap: break-word;}
 
 .no-close .ui-dialog-titlebar-close {display: none;}
 
-@keyframes loading{
-	from {
-		-webkit-transform:rotate(0deg);
-		-moz-transform:rotate(0deg);
-		-o-transform:rotate(0deg);
-	}
-	to {
-		-webkit-transform:rotate(360deg);
-		-moz-transform:rotate(360deg);
-		-o-transform:rotate(360deg);
-	}
-}
-
-@-webkit-keyframes loading{
-	from {
-		-webkit-transform:rotate(0deg);
-		-moz-transform:rotate(0deg);
-		-o-transform:rotate(0deg);
-	}
-	to {
-		-webkit-transform:rotate(360deg);
-		-moz-transform:rotate(360deg);
-		-o-transform:rotate(360deg);
-	}
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+    background: conic-gradient(
+      #4dabf7 0deg, 
+      #9775fa 120deg, 
+      #f783ac 240deg, 
+      transparent 360deg
+    );
+  }
+  to {
+    transform: rotate(360deg);
+    background: conic-gradient(
+      #4dabf7 360deg, 
+      #9775fa 480deg, 
+      #f783ac 600deg, 
+      transparent 720deg
+    );
+  }
 }
 
 
@@ -93,7 +111,7 @@ textarea {white-space: pre;word-wrap: break-word;}
 /*  Header/logo */
 #header{
 	padding:5px 0;
-	background:<?php echo $config->ParameterArray['HeaderColor']; ?> url("../<?php echo $config->ParameterArray['PDFLogoFile']; ?>") no-repeat left center;
+	background:#6BB1E0 url("../images/logo.png") no-repeat left center;
 	height:66px;
 	position: relative;
 }
@@ -146,7 +164,7 @@ div#imageselection { display: none;}
 
 #configtabs .ui-menu-item ul { max-height: 200px; /* overflow: auto; */ }
 #tzmenu {display: none;}
-#tzmenu li > a {display: block; width: 100%; line-height: 1.25; color: #aaaaaa !important;}
+#tzmenu li > a {display: block; width: 100%; line-height: 1.25; color: #fff !important;}
 #tzmenu li > a.ui-state-active {color: black !important; line-height: 1.5 !important; background: url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x !important;}
 #tzmenu li > ul { overflow-x: hidden; }
 #tzmenu li > ul { -ms-overflow-style: none; scrollbar-width: none; }
@@ -169,19 +187,19 @@ div#imageselection { display: none;}
 .index .table, .index .table .title {background-color: white;}
 .index .table .title {font-weight: bold; font-size: 1.25em;}
 .index .table div {padding: 3px;}
-.rackrequest div:first-child div {background-color: gray;text-align: center;color: white;font-weight: bold;}
+.rackrequest div:first-child div {background-color: #fff;text-align: center;color: white;font-weight: bold;}
 .overdue {background-color:#FFE6F4;}
 .soon {background-color:#FFFFAA;}
-.clear {background-color:white;}
+.clear {background-color:#fff;}
 
 /* Rack Request Page */
 .request fieldset {
 		background-color: white;
-		border: 1px solid grey;
+		border: 1px solid #fff;
 		padding: 10px;
 		margin-bottom: 8px;
 }
-.request legend {border: 1px <?php echo $config->ParameterArray['HeaderColor']; ?> solid;background-color: white; padding: .15em;}
+.request legend {border: 1px #6BB1E0 solid;background-color: white; padding: .15em;}
 .errmsg {display:block;font-style:italic;margin-left:2em;}
 .hlight {color: red;}
 
@@ -214,7 +232,7 @@ div#dcstats .table + .table > div > div + div{white-space: pre; text-align: righ
 canvas#background { position: absolute; }
 
 /* Storage Room */
-.storage .table, .storage .table #title { background: white; }
+.storage .table, .storage .table #title { background: #fff; }
 .storage .table #title {filter: none;}
 .storage .table .title { font-weight: bold; font-size: 1.25em; }
 .storage .table div {padding: 3px;}
@@ -268,10 +286,10 @@ canvas#background { position: absolute; }
 #sidebar input + button img, #sidebar .text-arrow + button img {height: 27px;}
 #sidebar div.text-core {width: 150px; height: 27px;}
 #sidebar div.text-core textarea{ width: 151px; height: 27px;}
-#sidebar .advsearch { background: white; display: block; height: 4.5em; position: absolute; top: 0px; width: 350px; z-index: 99; }
+#sidebar .advsearch { background: #fff; display: block; height: 4.5em; position: absolute; top: 0px; width: 350px; z-index: 99; }
 #searchadv ~ select { padding: 5px; border: 1px solid black; }
 #sidebar .advsearch.hide { display: none; }
-#advsrch { color: <?php echo $config->ParameterArray['LinkColor']; ?>; cursor: pointer; }
+#advsrch { color: #000000; cursor: pointer; }
 #advsrch:before {content:"[ ";}
 #advsrch:after {content:" ]";}
 #searchadv ~ .ui-icon.ui-icon-close { position: absolute; top: 0; right: 0; cursor: pointer;}
@@ -341,7 +359,7 @@ canvas#background { position: absolute; }
 .table.front #coordstable, .table.rear #coordstable { width: 320px; padding-left: 10px;}
 #coordstable input { width: 40px; }
 #coordstable > .table > div:first-child { text-align: center; }
-table.coordinates th {background-color: #CCC; text-align: center; vertical-align: middle; padding-left: .5em; padding-right: .5em; padding-top: .2em;padding-bottom: .2em;}
+table.coordinates th {background-color: #fff; text-align: center; vertical-align: middle; padding-left: .5em; padding-right: .5em; padding-top: .2em;padding-bottom: .2em;}
 table.coordinates td {text-align: center; padding-left: .5em; padding-right: .5em; padding-top: 0.1em;padding-bottom: 0.1em;}
 table.coordinates input {text-align: center; border: 0px;}
 table.coordinates select {text-align: center; border: 0px;}
@@ -349,8 +367,8 @@ span.cdudisclaimer {color:red;font-weight:bold;}
 
 #hiddenports,#hiddenpowerports { position: absolute; left: -10000px; top: -10000px;}
 .hiddenports .table { border: 1px solid black; }
-.hiddenports .table > div:first-child { text-align: center; background-color: lightgray; border: 1px solid black;}
-.hiddenports .table > div { background-color: white; }
+.hiddenports .table > div:first-child { text-align: center; background-color: #fff; border: 1px solid black;}
+.hiddenports .table > div { background-color: #fff; }
 .hiddenports .table > div > div { padding: 3px; }
 
 #rightside { vertical-align: top; }
@@ -365,15 +383,15 @@ h3 {font-size: 1.16em;text-align: center;}
 h3 + h3 {color: red;font-weight: bold;}
 h4 {font-size: 1.1em;text-align: center;}
 h3 + h5 {margin-bottom: 0.5em;}
-a:link, a:hover, a:visited:hover {color:<?php echo $config->ParameterArray['LinkColor']; ?>;}
-a:visited {color: <?php echo $config->ParameterArray['VisitedLinkColor']; ?>;}
+a:link, a:hover, a:visited:hover {color:#000000;}
+a:visited {color: #6D71AB;}
 
 div.main {
 	display: inline-block;
 	vertical-align: top;
 	min-height: 500px;
 	padding: 5px;
-	background-color: <?php echo $config->ParameterArray['BodyColor']; ?>;
+	background-color: #ffffaa2b;
 	border: 1px dotted #333;
 	margin-bottom: 2em;
 }
@@ -392,7 +410,7 @@ div.table > div > div {display: table-cell;vertical-align: middle; /* padding-bo
 /* div.table > div > div span {display: block;font-size: 0.75em;} */
 .table label{width:130px;}
 .whiteborder, .whiteborder div {border: 1px solid white;}
-.border, .border div {border: 1px solid gray;}
+.border, .border div {border: 1px solid #fff;}
 
 /* Search Results */
 .search .center {text-align: left;}
@@ -442,7 +460,7 @@ div.center div table {
 /*	max-width: 400px; */
 }
 div.center div table table{min-width: 150px;}
-div.center div table, div.center div tr, div.center div td {border: 1px solid gray;}
+div.center div table, div.center div tr, div.center div td {border: 1px solid #fff;}
 .cabinet tr > td:first-child, .panelmgr .polenumber {padding: 0.25em 0.5em;text-align: center;}
 .panelmgr .polelabel {
 	min-width: 150px;
@@ -461,7 +479,7 @@ td#oddeven {padding: 0px;text-align: left;width: 150px;}
 #powerinfo {margin-top: 0em;}
 #powerinfo .table {background-color: white;}
 #powerinfo .caption {border: 0px !important;}
-div.error {margin-top: 2em;margin-bottom: 2em;border: 1px dotted gray;}
+div.error {margin-top: 2em;margin-bottom: 2em;border: 1px dotted #fff;}
 .error legend {color: red;font-weight: bold;}
 .error > div > div {width: 200px;vertical-align: top !important;}
 .error > div > div + div {font-style: italic;}
@@ -480,9 +498,9 @@ div.error {margin-top: 2em;margin-bottom: 2em;border: 1px dotted gray;}
 	min-height: 150px;
 	display: none;
 	margin-top: 20px;
-	border: 1px solid gray;
+	border: 1px solid #fff;
 }
-#deptgroup {background-color: <?php echo $config->ParameterArray['BodyColor']; ?>;}
+#deptgroup {background-color: #fff;}
 #deptgroup > div {padding:5px 10px;width:580px;min-height:300px;}
 #deptgroup > div h3 {margin-top: 0;margin-bottom: 5px;}
 #deptgroup > div h3 button {margin-left:10px;vertical-align:middle;}
@@ -497,9 +515,9 @@ div.error {margin-top: 2em;margin-bottom: 2em;border: 1px dotted gray;}
 	min-height: 150px;
 	display: none;
 	margin-top: 20px;
-	border: 1px solid gray;
+	border: 1px solid #fff;
 }
-#projectgroup {background-color: <?php echo $config->ParameterArray['BodyColor']; ?>;}
+#projectgroup {background-color: #fff;}
 #projectgroup > div {padding:5px 10px;width:580px;min-height:300px;}
 #projectgroup > div h3 {margin-top: 0;margin-bottom: 5px;}
 #projectgroup > div h3 button {margin-left:10px;vertical-align:middle;}
@@ -516,12 +534,12 @@ div.error {margin-top: 2em;margin-bottom: 2em;border: 1px dotted gray;}
 }
 #infopanel fieldset, .reports fieldset {
 		background-color: white;
-		border: 1px solid grey;
+		border: 1px solid #fff;
 		padding: 10px;
 		margin-bottom: 8px;
 }
 #infopanel fieldset button, #infopanel fieldset input[type=submit], #infopanel fieldset input[type=button],.reports fieldset button, .reports fieldset input[type=submit], .reports fieldset input[type=button] {width: 100%;}
-#infopanel legend, .device legend, .reports legend {border: 1px <?php echo $config->ParameterArray['HeaderColor']; ?> solid;background-color: white;}
+#infopanel legend, .device legend, .reports legend {border: 1px #6BB1E0 solid;background-color: white;}
 div.cabinet {
 	display: inline-block;
 	vertical-align: top;
@@ -545,7 +563,7 @@ div.cabinet {
 #zerou a{display: block;}
 
 .cabnavigator .nav { text-align: center; }
-.cabnavigator .nav li { margin-top: 0.1em; border: 1px solid darkGray;}
+.cabnavigator .nav li { margin-top: 0.1em; border: 1px solid #fff;}
 .cabnavigator .nav a:hover li { border-color: black; }
 
 .cabnavigator th a { color: black; text-decoration: none; pointer-events: none; }
@@ -566,7 +584,7 @@ div.cabinet {
 .blackout { background-color: black; }
 .rowview .noprint span:last-child {display: none;}
 .rowview div.cabinet { vertical-align: bottom; }
-.cabinet .error { background-color: <?php echo $config->ParameterArray['CriticalColor']; ?> !important; }
+.cabinet .error { background-color: #CC0000 !important; }
 
 /* flippingpostits - START */
 .loader {
@@ -840,8 +858,8 @@ div.cabinet {
   text-align: center;
 }
 .box.white {background-color: white;}
-.box.red   {background-color: <?php echo $config->ParameterArray['BodyColor']; ?>;}
-.box.blue  {background-color: <?php echo $config->ParameterArray['HeaderColor']; ?>;}
+.box.red   {background-color: #fff;}
+.box.blue  {background-color: #6BB1E0;}
 
 /* rotatingloader - END */
 /* rollingbox - START */
@@ -871,7 +889,7 @@ div.cabinet {
   content: '';
   width: 50px;
   height: 50px;
-  background: <?php echo $config->ParameterArray['HeaderColor']; ?>;
+  background: #6BB1E0;
   animation: animate .5s linear infinite;
   position: absolute;
   top: 0;
@@ -983,7 +1001,7 @@ div.cabinet {
 	padding: 3px 2px 3px 2px;
 	font-weight: bold;
 	border: 0px none;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #fff;
 	margin: 2px 2px 2px 0px;
 }
 #infopanel #cabprop td:nth-child(2){
@@ -1011,7 +1029,7 @@ div.cabinet {
 
 .imagem div.preview {
 	background-color: #FFFFFF;
-	border: 1px solid #808080;
+	border: 1px solid #fff;
 	height: 300px;
 	padding: 5px;
 	width: 500px;
@@ -1052,13 +1070,21 @@ div.cabinet {
 
 /* devices.php  Device Detail */
 .device fieldset {
-	display: block;
-	vertical-align: top;
-	margin-bottom: 1.5em;
-	margin-top: 1em;
-	background-color: white;
-	border: 1px dotted gray;
-	padding: 0.25em;
+  display: block;
+  vertical-align: top; /* 保留原始布局属性 */
+  margin: 1.5em 0;     /* 更合理的垂直间距 */
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08); /* 更柔和的阴影 */
+  padding: 1.5em;      /* 改用em单位保持响应式 */
+  border: none;
+  transition: all 0.3s ease; /* 添加悬停动画 */
+}
+
+/* 可选：添加悬停效果提升交互感 */
+.device fieldset:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
 }
 //.device fieldset .custom-combobox{margin: 0;padding: 0 0 0 2px;}
 .device fieldset .custom-combobox{margin: 0;padding: 0;}
@@ -1081,8 +1107,8 @@ div.cabinet {
 .device #auditdate { line-height: 2em; }
 
 .device .table {width: 100%;}
-.device .table.style > div:nth-child(2n+1) > div {border-top: 1px solid grey;vertical-align: top;}
-.device .table.style > div:nth-child(2n+1) > div:first-child {background-color: lightGray;border-left: 1px solid grey;}
+.device .table.style > div:nth-child(2n+1) > div {border-top: 1px solid #fff;vertical-align: top;}
+.device .table.style > div:nth-child(2n+1) > div:first-child {background-color: #fff;border-left: 1px solid grey;}
 .device .table > div > div {min-width: 100px;}
 .device .caption {margin-top: 2em;}
 .device .table .table .table, .right .table + .table {background-color: white;width: 100%; height: 100%;}
@@ -1168,10 +1194,19 @@ div.cabinet {
 .patchpanel.table input, .patchpanel.table select { padding: 0; background-color: transparent;}
 .switch.table div[id^=n] input { width:98%; }
 
-.switch .status, .power .status, .patchpanel .down { background-image: url("../images/portstatus.png");}
-.switch .down, .patchpanel .down { background-position: left; }
-.switch .up { background-position: right; }
-.power .up { background-position: right; }
+.switch .down {
+  background: #ff6b6b; /* 红色 */
+  box-shadow: inset 0 0 0 2px #ff8787;
+}
+
+.switch .up {
+  background: #51cf66; /* 绿色 */
+  box-shadow: inset 0 0 0 2px #94d82d;
+}
+
+.patchpanel .down {
+  background: #ff922b; /* 橙色 */
+}
 
 .chassis .table input{text-align:center;}
 .chassis .table > div > div{text-align:center;}
@@ -1193,7 +1228,7 @@ div.cabinet {
 #Positionselector {padding: 10px; position: absolute; left: -1000px; background-color: white; border: 1px solid black; z-index: 99;}
 
 #editbtn { display: block; margin-bottom: 5px;}
-#preview { width: 340px; min-height: 130px; background-color: white; border: 1px solid grey; padding: 5px;}
+#preview { width: 340px; min-height: 130px; background-color: white; border: 1px solid #fff; padding: 5px;}
 #preview img { display: block; border: 0px; max-width: 330px;}
 
 /* hey I do something function */
@@ -1240,7 +1275,7 @@ div.cabinet {
 /* Logging style */
 #logtable { width: 100%; width: calc(100% - 36px); border: 1px solid black; }
 #logtable > div:first-child { border-bottom: 1px solid black; font-size: large;}
-#logtable > div:nth-child(2n) { background-color: lightgray; border-bottom: 1px dotted black; }
+#logtable > div:nth-child(2n) { background-color: #fff; border-bottom: 1px dotted black; }
 #logtable > div ~ div > div:first-child{ padding: 3px; white-space: nowrap;}
 #logtable > div ~ div > div:nth-child(4){ border-left: 2px dotted black; padding-left: 3px; white-space: nowrap;}
 #logtable > div ~ div > div:nth-child(5){ text-align: right; }
@@ -1251,38 +1286,15 @@ div.cabinet {
 /* Button code primarily from http://somadesign.ca */
 /* Button */
 .button, input[type=button], input[type=submit], button {
-	text-decoration: none;
-	border-color:#888;
-	border-color:rgba(0, 0, 0, 0.56);
-	cursor: pointer;
-	outline: none;
-	color:#111;
-	display:inline-block;
-	vertical-align:top;
-	position:relative;
-	font-size:12px;
-	text-align:center;
-	background-color:#aaa;
-	background-image:url(gradient.png);
-	background-image: -moz-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,0));
-	background-image: -o-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,0));
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,.75)), to(rgba(255,255,255,0)));
-	background-image: linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,0));
-	background-repeat:repeat-x;
-	text-shadow:1px 1px 0 rgba(255,255,255,.67); 
-	line-height:2;
-	height:2em;
-	-moz-box-shadow:1px 1px 0 rgba(255,255,255,.5) inset, -1px -1px 0 rgba(255,255,255,.5) inset;
-	-webkit-box-shadow:1px 1px 0 rgba(255,255,255,.5) inset, -1px -1px 0 rgba(255,255,255,.5) inset;
-	box-shadow:1px 1px 0 rgba(255,255,255,.5) inset, -1px -1px 0 rgba(255,255,255,.5) inset;
-	-webkit-transition: background .185s linear;
-	-moz-transition: all .185s linear;
-	-o-transition: all .185s linear;
-	transition: all .185s linear;
-	/** Make the text unselectable **/
-	-moz-user-select: none;
-	-webkit-user-select: none;
+  background: linear-gradient(to bottom, #fff, #f5f5f5);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+  padding: 8px 16px;
 }
+
 .button, .button:after, button, button:after, input[type=submit], input[type=button], ul.nav li {
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
@@ -1295,7 +1307,7 @@ div.cabinet {
 	position:absolute;
 	width:100%;
 	height:100%;
-	border-color: transparent transparent #ccc;
+	border-color: transparent transparent #fff;
 	border-color: transparent transparent rgba(255, 255, 255, 0.67);
 	bottom:-2px;
 	left:-1px;
@@ -1327,7 +1339,7 @@ div.cabinet {
 	/* Turn off list bullets */
 	ul.mktree  li { list-style: none; } 
 	/* Control how "spaced out" the tree is */
-	ul.mktree, ul.mktree ul , ul.mktree li { margin-left:5px; padding:0px; }
+	ul.mktree, ul.mktree ul , ul.mktree li { margin-left:5px; padding:2px; }
 	/* Provide space for our own "bullet" inside the LI */
 	ul.mktree  li           .bullet { padding-left: 15px; }
 	/* Show "bullets" in the links, depending on the class of the LI that the link's in */
@@ -1354,7 +1366,7 @@ div.cabinet {
 		page-break-after: always;
 	}
 }
-.meter-wrap{position: relative;background-color: lightgrey;overflow:hidden;}
+.meter-wrap{position: relative;background-color: #fff;overflow:hidden;}
 .meter-wrap, .meter-value, .meter-text {width: 210px; height: 1.1em;}
 .meter-text {
 	position: absolute;
@@ -1386,13 +1398,13 @@ fieldset[name=pdu] > div > img { vertical-align: text-bottom; }
 .installer ul li, ul.nav li{
 	display: block;
 	padding: 1.5em;
-	background-color: lightGray;
-	border: 0px solid lightGray;
+	background-color: #ffffaa5c;
+	border: 0px solid #fff;
 }
-.installer ul li{border: 1px dashed darkGray;}
+.installer ul li{border: 1px dashed #fff;}
 .installer #sidebar a, .nav a {text-decoration: none;}
 .installer #sidebar a:hover li.active, .nav a:hover li.active {background-color: white;border-color: lightGray;}
-.installer .active, .nav .active {background-color: white;border: 1px solid darkGray;}
+.installer .active, .nav .active {background-color: white;border: 1px solid #fff;}
 .installer a.active span:first-child, .nav a.active span:first-child {background-position: -144px 0;}
 .installer div.table > div > div + div {width: 300px;}
 .installer .rights > div:nth-last-child(2) div {padding-top: 0;padding-bottom: 2em;text-align: left;}
@@ -1405,7 +1417,7 @@ div.page.installer .main{max-width: 850px;}
 
 
 /* Menu */
-ul.nav li {padding: .5em;}
+ul.nav li {padding: 1.5em;}
 .nav a:visited {color: #000000;}
 #sidebar .nav li a { display: block;}
 #sidebar .nav .ui-state-focus {
@@ -1419,7 +1431,7 @@ ul.nav li {padding: .5em;}
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-	border: 1px solid #aaaaaa !important;
+	border: 1px solid #fff !important;
 	background: url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x !important;
 	font-weight: normal !important;
 	color: rgb(51, 51, 51) !important;
@@ -1443,7 +1455,7 @@ div.center div table#export { margin: auto; max-width: none; }
 
 /* Paths */
 /* Paths form */
-fieldset.crit_busc {border: 1px solid grey; padding:0.5em; background-color: #EEEEEE;}
+fieldset.crit_busc {border: 1px solid #fff; padding:0.5em; background-color: #EEEEEE;}
 fieldset.crit_busc legend {background-color: white; padding:0.5em; border: 1px solid grey;}
 table#crit_busc {border: 0px; background: transparent; padding:0.5em;}
 table#crit_busc tr {border: 0px; background: transparent; padding:0.5em;}
@@ -1471,11 +1483,10 @@ table#parcheos td {padding: 0px; border: 0px; vertical-align: top;}
 
 table#parcheos table tr + tr > td + td{background-color:yellow;}
 table#parcheos table {margin: 0px; border: 0px; border-collapse: collapse; text-align: left; vertical-align: middle; min-width: 50px; white-space: nowrap;}
-table#parcheos table tr th {background-color: #DDDDDD; padding: 2px; border: 1px solid grey; text-align: left; border-collapse: collapse;}
-table#parcheos table tr td {padding: 2px; border: 1px solid grey; text-align: left; border-collapse: collapse;}
+table#parcheos table tr th {background-color: #fffefe; padding: 2px; border: 1px solid #fff; text-align: left; border-collapse: collapse;}
+table#parcheos table tr td {padding: 2px; border: 1px solid #fff; text-align: left; border-collapse: collapse;}
 table#parcheos tr td:first-child + td table {margin-left: auto;}
 
-p.errormsg {padding: 20px; background-color: #DDDDDD; font-size: 120%; font-weight: bold; color: red;}
-
+p.errormsg {padding: 20px; background-color: #fff; font-size: 120%; font-weight: bold; color: red;}
 
 
